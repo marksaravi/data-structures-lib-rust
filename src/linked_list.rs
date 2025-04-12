@@ -5,6 +5,7 @@ pub trait OneDirLinkedList {
     fn pop(&mut self) -> Option<Self::Item>;
     fn peek(&self) -> Option<&Self::Item>;
     fn is_empty(&self) -> bool;
+    fn length(&self) -> usize;
 }
 pub struct Node<T> {
     value: T,
@@ -64,6 +65,10 @@ impl<T> OneDirLinkedList for SimpleLinkedList<T> {
 
     fn is_empty(&self) -> bool {
         self.head.is_none()
+    }
+    
+    fn length(&self) -> usize {
+        self.size()
     }
 }
 #[cfg(test)]
