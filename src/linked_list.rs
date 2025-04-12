@@ -1,4 +1,4 @@
-pub trait OneWayLinkedList {
+pub trait OneDirLinkedList {
     type Item;
     fn new() -> Self;
     fn push(&mut self, item: Self::Item);
@@ -38,7 +38,7 @@ impl<T> SimpleLinkedList<T> {
     }
 }
 
-impl<T> OneWayLinkedList for SimpleLinkedList<T> {
+impl<T> OneDirLinkedList for SimpleLinkedList<T> {
     type Item = T;
 
     fn new() -> Self {
