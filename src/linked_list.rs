@@ -1,4 +1,4 @@
-pub trait linked_list {
+pub trait OneWayLinkedList {
     type Item;
     fn new() -> Self;
     fn push(&mut self, item: Self::Item);
@@ -18,19 +18,31 @@ impl<T> Node<T> {
         }
     }
 }
-pub struct LinkedList<T> {
+pub struct SimpleLinkedList<T> {
     head: Option<Box<Node<T>>>,
 }
-impl<T> LinkedList<T> {
+
+impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
-        LinkedList { head: None }
+        SimpleLinkedList { head: None }
+    }
+
+    pub fn size(&self) -> usize {
+        let mut count = 0;
+        let mut current = &self.head;
+        while let Some(node) = current {
+            count += 1;
+            current = &node.next;
+        }
+        count
     }
 }
-impl<T> linked_list for LinkedList<T> {
+
+impl<T> OneWayLinkedList for SimpleLinkedList<T> {
     type Item = T;
 
     fn new() -> Self {
-        LinkedList::new()
+        SimpleLinkedList::new()
     }
 
     fn push(&mut self, item: Self::Item) {
@@ -60,7 +72,7 @@ mod tests {
 
     #[test]
     fn test_linked_list() {
-        let mut list = LinkedList::new();
+        let mut list = SimpleLinkedList::new();
         assert!(list.is_empty());
 
         list.push(1);
