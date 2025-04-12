@@ -1,3 +1,6 @@
+use std::fmt;
+use std::fmt::Display;
+
 pub trait OneDirLinkedList {
     type Item;
     fn new() -> Self;
@@ -71,6 +74,13 @@ impl<T> OneDirLinkedList for SimpleLinkedList<T> {
         self.size()
     }
 }
+
+impl fmt::Display for SimpleLinkedList<i32> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({})", self.length())
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -1,8 +1,7 @@
+use std::fmt::Display;
 use data_structures_lib_rust::linked_list::{OneDirLinkedList, SimpleLinkedList};
 
-
-
-fn main(){
+fn main() {
     let mut list: SimpleLinkedList<i32> = SimpleLinkedList::new();
 
     assert!(list.is_empty());
@@ -12,8 +11,13 @@ fn main(){
     list.push(3);
 
     print_linked_list(&list);
+    display_lebgth(&list);
 }
 
-fn print_linked_list(ll: &impl   OneDirLinkedList){
+fn print_linked_list(ll: &impl OneDirLinkedList) {
     println!("list length: {}", ll.length());
+}
+
+pub fn display_lebgth<T: Display>(item: &T) {
+    println!("item: {}", item);
 }
